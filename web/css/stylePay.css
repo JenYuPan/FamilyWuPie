@@ -1,0 +1,54 @@
+body{
+    background-color: lightyellow;
+}
+.title{
+    text-align: center;
+    font-size: 30px;
+    margin:20px 0;
+}
+.title3{
+    text-align: center;
+    font-size: 24px;
+    margin:10px 0;
+}
+.payTable {
+    width: 100%;
+    margin-top: 2em;
+    text-align: center;
+}
+.payButton{
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 2px auto;
+    padding: 1em;
+    font-size: 35px;
+    font-weight: bold;
+    color: #337788;
+    background-color: #f0f8ff;
+    border: 3px solid #159;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.payButton:hover {
+    background-color: deepskyblue;
+    transform: scale(1.05);
+}
+
+.rollBackButton{
+    font-size: 20px;
+    font-weight: bold;
+    color: gold;
+    background-color: orangered;
+    border: 3px solid #115599;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3S ease;
+}
+.rollBackButton:hover {
+    background-color: deepskyblue;
+    transform: scale(1.05);
+}

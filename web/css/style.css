@@ -2,7 +2,22 @@ html,body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-color: #fefefe;
+    background-color: lightyellow;
+}
+.checkButton{
+    font-size: 15px;
+    font-weight: bold;
+    color: lightcoral;
+    background-color: slategray;
+    border: 3px solid #115599;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3S ease;
+}
+.checkButton:hover {
+    background-color:deepskyblue;
+    transform: scale(1.05);
 }
 
 .title{
@@ -102,3 +117,6 @@ html,body{
     padding: 5px;
     box-sizing: border-box;
 }
+
+
+

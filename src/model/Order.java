@@ -14,11 +14,47 @@ public class Order {
     private LocalDateTime orderTime;
     private int total;
 
+    public Order() {
+        this.orderTime=LocalDateTime.now();
+    }
+
     public void calculateTotal(){
         int sum = 0;
         for(OrderItem item:items){
             sum+=item.getSubTotal();
         }
         total=sum;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
+    }
+
+    public void setOrderTime(LocalDateTime orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public LocalDateTime getOrderTime() {
+        return orderTime;
+    }
+
+    public int getTotal() {
+        return total;
     }
 }

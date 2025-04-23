@@ -9,10 +9,11 @@
 <html>
 <head>
     <title>吳家餡餅</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
     <script type="text/javascript" src="<%= request.getContextPath() %>/javaScript/script.js"></script>
 </head>
 <body>
+
 <div>
     <h1 class="title">吳家餡餅 <input type="button" value="點我結帳" name="checkButton" onclick="checkOut()"></h1>
 </div>
