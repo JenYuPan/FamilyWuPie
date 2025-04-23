@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>吳家餡餅 點餐介面</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/script.js}" defer></script>
+</head>
+<body>
+<div>
+    <h1 class="title">吳家餡餅 <input type="button" value="點我結帳" name="checkButton" onclick="checkOut()"></h1>
+</div>
+<form th:action="@{/orders}" method="post" id="orderForm">
+    <table class="orderTable">
+        <tr>
+            <td>
+                <div class="item">
+                    <img th:src="@{/foodPic/beefPie.jpg}" class="food">
+
+                    <span class="item-name">牛肉餡餅 50$<br>
+                    _<br>""
+                    <span class="num-control">
+                        <img th:src="@{/foodPic/mi.png}" class="num" onclick="decrease('beefRd')">
+                        <input type="text" value="0" id="beefRd" class="num-input">
+                        <img th:src="@{/foodPic/plus.png}" class="num" onclick="increase('beefRd')">
+                    </span>
+
+                </span>
+
+                </div>
+            </td>
+            <td>
+                <div class="item">
+                    <img th:src="@{/foodPic/porkPie.jpg}" class="food">
+                    <span class="item-name">豬肉餡餅 50$<br>
+                    _<br>""
+                    <span class="num-control">
+                        <img th:src="@{/foodPic/mi.png}" class="num" onclick="decrease('porkRd')">
+                        <input type="text" value="0" id="porkRd" class="num-input">
+                        <img th:src="@{/foodPic/plus.png}" class="num" onclick="increase('porkRd')">
+                    </span>
+
+                </span>
+                </div>
+            </td>
+            <td>
+                <div class="item">
+                    <img th:src="@{/foodPic/coldNoodle.jpg}" class="food">
+                    <span class="item-name">涼麵 50$<br>
+                    _<br>""
+                    <span class="num-control">
+                        <img th:src="@{/foodPic/mi.png}" class="num" onclick="decrease('coldNoodleRd')">
+                        <input type="text" value="0" id="coldNoodleRd" class="num-input">
+                        <img th:src="@{/foodPic/plus.png}" class="num" onclick="increase('coldNoodleRd')">
+                    </span>
+
+                </span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="item">
+                    <img th:src="@{/foodPic/winterMelonTea.jpg}" class="food">
+                    <span class="item-name">冬瓜茶 20$<br>
+                    _<br>""
+                    <span class="num-control">
+                        <img th:src="@{/foodPic/mi.png}" class="num" onclick="decrease('winterMelonTeaRd')">
+                        <input type="text" value="0" id="winterMelonTeaRd" class="num-input">
+                        <img th:src="@{/foodPic/plus.png}" class="num" onclick="increase('winterMelonTeaRd')">
+                    </span>
+
+                </span>
+                </div>
+            </td>
+            <td>
+                <div class="item">
+                    <img th:src="@{/foodPic/soyMilk.jpg}" class="food">
+                    <span class="item-name">有糖豆漿 20$<br>
+                    _<br>""
+                    <span class="num-control">
+                        <img th:src="@{/foodPic/mi.png}" class="num" onclick="decrease('soyMilkRd')">
+                        <input type="text" value="0" id="soyMilkRd" class="num-input">
+                        <img th:src="@{/foodPic/plus.png}" class="num" onclick="increase('soyMilkRd')">
+                    </span>
+
+                </span>
+                </div>
+            </td>
+            <td>
+                <div class="item">
+                    <img th:src="@{/foodPic/soyMilk.jpg}" class="food">
+                    <span class="item-name">無糖豆漿 20$<br>
+                    _<br>""
+                    <span class="num-control">
+                        <img th:src="@{/foodPic/mi.png}" class="num" onclick="decrease('sugarFreeSoyMilkRd')">
+                        <input type="text" value="0" id="sugarFreeSoyMilkRd" class="num-input">
+                        <img th:src="@{/foodPic/plus.png}" class="num" onclick="increase('sugarFreeSoyMilkRd')">
+                    </span>
+
+                </span>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
