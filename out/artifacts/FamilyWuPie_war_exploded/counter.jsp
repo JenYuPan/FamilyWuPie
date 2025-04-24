@@ -15,7 +15,7 @@
 <html>
 <head>
     <title>吳家餡餅櫃台畫面</title>
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/styleCounter.css">
     <script type="text/javascript" src="<%= request.getContextPath() %>/javaScript/scriptcounter.js" defer></script>
 
 
@@ -23,7 +23,7 @@
 <body>
     <h1 class="title">目前訂單:</h1>
 
-    <div id="orderBlock" style="background: greenyellow; width: auto" >
+    <div id="orderBlock" >
         <p style="margin-left:20px">目前沒有待處理的訂單</p>
     </div>
 

@@ -36,7 +36,7 @@ function checkOut() {
     item.forEach(item => {
         const qty = parseInt(document.getElementById(item.id).value) || 0;
         if (qty > 0) {
-            selectedItems.push({id: item.id,name:item.name,price:item.price, quantity: qty});
+            selectedItems.push({id: item.id, name: item.name, price: item.price, quantity: qty});
             const subtotal = qty * item.price;
             summery += `${item.name} X ${qty} = ${subtotal} 元\n`;
             total += subtotal;
@@ -57,7 +57,7 @@ function checkOut() {
     sessionStorage.setItem("orderItems", JSON.stringify(selectedItems));
     sessionStorage.setItem("orderTotal", total);
 
-    window.location.href="payment.jsp";
+    window.location.href = "payment.jsp";
 
 }
 
@@ -72,11 +72,31 @@ function submitPayment() {
         return;
     }
 
-    // ✅ 可選：送資料到 OrderTempStore（Servlet 寫好後補）
-    // 現在只跳轉，等你之後開寫 Servlet 時提醒你
+    const payload = {
+        orderId: orderId,
+        items: JSON.parse(orderItems),
+        total: orderTotal
+    };
 
-    // ✅ 跳轉到等待頁，附上 orderId
-    window.location.href = "waiting.jsp?orderId=" + orderId;
+    fetch("submitOrder", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+        .then(res => {
+            if (res.ok) {
+                window.location.href = "waiting.jsp?orderId=" + orderId;
+            } else {
+                alert("送出訂單失敗，請稍後再試");
+            }
+
+        })
+        .catch(err=>{
+            console.error("送出錯誤：",err);
+            alert("無法連線至伺服器");
+        });
 }
 
 

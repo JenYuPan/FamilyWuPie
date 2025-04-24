@@ -25,9 +25,9 @@ window.onload = function () {
             .then(res => res.json())
             .then(data => {
                 if (data.paid === true) {
-                    window.location.href = "success.jsp";
+                    window.location.href = "successPage.jsp?orderId="+orderId;
                 } else if (data.cancelled === true) {
-                    document.getElementById("statusMessage").innerText = "此訂單已被取消";
+                    window.location.href="cancelPage.jsp"
                 }
             });
     }, 3000);
