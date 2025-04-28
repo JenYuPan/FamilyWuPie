@@ -1,6 +1,7 @@
 package controller;
 
 
+import Util.OrderIdGenerator;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -28,6 +29,7 @@ public class OrderSubmitServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("application/json");
         try {
             //讀取
             StringBuilder sb = new StringBuilder();
@@ -40,10 +42,12 @@ public class OrderSubmitServlet extends HttpServlet {
             String json = sb.toString();
             JsonObject root = JsonParser.parseString(json).getAsJsonObject();
 
-            String orderId = root.get("orderId").getAsString();
             JsonArray itemsArray = root.get("items").getAsJsonArray();
+            int total = root.get("total").getAsInt();
 
-            int total = 0;
+            String orderId = OrderIdGenerator.generateOrderId();
+
+
             //準備裝
             List<Map<String, Object>> itemList = new ArrayList<>();
             for (JsonElement e : itemsArray) {
@@ -63,14 +67,12 @@ public class OrderSubmitServlet extends HttpServlet {
                 //裝進去
                 itemList.add(map);
 
-                total += price * qty;
 
             }
             //暫存
             OrderTempStore.put(orderId, itemList, total);
 
             //json回傳 終於= =
-            resp.setContentType("application/json");
             //訂單狀態
             resp.getWriter().write("{\"status\":\"ok\", \"orderId\":\"" + orderId + "\"}");
         }catch (Exception e){

@@ -63,19 +63,17 @@ function checkOut() {
 
 // 付款連結
 function submitPayment() {
-    const orderId = sessionStorage.getItem("orderId");
     const orderItems = sessionStorage.getItem("orderItems");
     const orderTotal = sessionStorage.getItem("orderTotal");
 
-    if (!orderId || !orderItems || !orderTotal) {
+    if (!orderItems || !orderTotal) {
         alert("找不到訂單資料，請重新點餐!");
         return;
     }
 
     const payload = {
-        orderId: orderId,
         items: JSON.parse(orderItems),
-        total: orderTotal
+        total: parseInt(orderTotal)
     };
 
     fetch("submitOrder", {
@@ -85,17 +83,18 @@ function submitPayment() {
         },
         body: JSON.stringify(payload)
     })
-        .then(res => {
-            if (res.ok) {
-                window.location.href = "waiting.jsp?orderId=" + orderId;
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === "ok") {
+                sessionStorage.setItem("orderId", data.orderId)
+                window.location.href = "waiting.jsp";
             } else {
-                alert("送出訂單失敗，請稍後再試");
+                alert("送出訂單失敗!")
             }
-
         })
-        .catch(err=>{
-            console.error("送出錯誤：",err);
-            alert("無法連線至伺服器");
+        .catch(err => {
+            console.error("送出錯誤", err);
+            alert("無法連線到伺服器!");
         });
 }
 

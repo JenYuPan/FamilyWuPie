@@ -4,9 +4,15 @@ window.onload = function () {
 
 function fetchOrders() {
     fetch("getKitchenOrders")
-        .then(res => res.json()).then(data => {
+        .then(res => res.json())
+        .then(data => {
         renderKitchenOrders(data);
-    });
+    })
+        .catch(err=>{
+            console.error("無法取的訂單列表",err);
+            document.getElementById("kitchenOrderList")
+                .innerHTML = "<p style='color:red;'>無法取得訂單資料</p>";
+        });
 }
 
 function renderKitchenOrders(data) {
@@ -19,7 +25,7 @@ function renderKitchenOrders(data) {
     let html = "";
 
     data.forEach(order => {
-        html += `<div class="order-block">
+        html += `<div class="order-block" id="order-${order.orderId}">
                   <h2>訂單編號：${order.orderId}</h2><ul>`;
         order.items.forEach(item => {
             html += `<li>${item.name} X ${item.quantity} 個</li>`;
@@ -38,7 +44,16 @@ function markDone(orderId){
         method:"POST",
         headers:{"Content-Type":"application/x-www-form-urlencoded"},
         body:"orderId="+encodeURIComponent(orderId)+"&action=done"
-    }).then(()=>fetchOrders());
+    })
+        .then(res => res.json())
+        .then(date=>{
+            if (date.status==="ok"){
+                fetchOrders();
+            }else{
+                alert("錯誤："+date.message);
+            }
+        })
+        .catch(err=>console.error("出餐錯誤：",err))
 }
 
 function markCancel(orderId){
@@ -49,5 +64,14 @@ function markCancel(orderId){
         method:"POST",
         headers:{"Content-Type":"application/x-www-form-urlencoded"},
         body:"orderId="+encodeURIComponent(orderId)+"&action=cancel"
-    }).then(()=>fetchOrders());
+    })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.status==="ok"){
+                fetchOrders();
+            }else{
+                alert("錯誤："+data.message);
+            }
+        })
+        .catch(err=> console.error("取消錯誤",err))
 }

@@ -1,6 +1,6 @@
 package dao;
 
-import model.DBUtil;
+import Util.DBUtil;
 import model.Order;
 import model.OrderItem;
 
