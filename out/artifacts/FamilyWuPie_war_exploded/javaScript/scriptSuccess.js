@@ -15,22 +15,22 @@ window.onload = function () {
     html += `</ul><p><strong>總金額：${total} 元</strong></p>`;
     document.getElementById("orderInfo").innerHTML = html;
 
-    // 將訂單送到廚房（後端 Servlet）
-    fetch("sendToKitchen", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            orderId: orderId,
-            items: orderItems,
-            total: total
-        })
-    }).then(res => {
-        if (!res.ok) {
-            console.error("送至廚房失敗");
-        }
-    });
+    // 將訂單送到廚房（後端 Servlet）流程有問題先拿掉
+    // fetch("sendToKitchen", {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     },
+    //     body: JSON.stringify({
+    //         orderId: orderId,
+    //         items: orderItems,
+    //         total: total
+    //     })
+    // }).then(res => {
+    //     if (!res.ok) {
+    //         console.error("送至廚房失敗");
+    //     }
+    // });
 
     setTimeout(() => {
         window.location.href = "orderPage.jsp";

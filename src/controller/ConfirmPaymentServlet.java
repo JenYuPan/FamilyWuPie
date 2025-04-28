@@ -22,9 +22,9 @@ public class ConfirmPaymentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        String orderId = req.getParameter("orderId");
-
         resp.setContentType("application/json");
+
+        String orderId = req.getParameter("orderId");
         PrintWriter out = resp.getWriter();
 
         if(orderId == null || orderId.isEmpty()){
@@ -32,7 +32,7 @@ public class ConfirmPaymentServlet extends HttpServlet {
             return;
         }
         if(OrderTempStore.get(orderId) == null){
-            out.write("{\"status\":error},\"message\":\"查無此單\"");
+            out.write("{\"status\":\"error\",\"message\":\"查無此單\"}");
             return;
         }
 

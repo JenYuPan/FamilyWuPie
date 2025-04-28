@@ -48,7 +48,17 @@ function confirmPayment(orderId) {
         .then(res=>res.json())
         .then(data=>{
             if(data.status==="ok"){
-                alert("訂單完成付款")
+                alert("訂單完成付款");
+                //改由從這裡轉發訂單給廚房
+                fetch("sendToKitchen",{
+                    method:"POST",
+                    headers:{"Content-Type":"application/x-www-form-urlencoded"},
+                    body:"orderId="+encodeURIComponent(orderId)
+                }).then(kitchenRes =>{
+                    if(!kitchenRes.ok){
+                        console.error("訂單送至廚房失敗!")
+                    }
+                });
             }else {
                 alert("錯誤"+data.message);
             }

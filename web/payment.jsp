@@ -10,7 +10,7 @@
 <head>
     <title>吳家餡餅 選擇付款方式</title>
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/stylePay.css">
-    <script type="text/javascript" src="<%= request.getContextPath() %>/javaScript/script.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath() %>/javaScript/scriptorderPage.js"></script>
 </head>
 <body>
 

@@ -10,7 +10,7 @@
 <head>
     <title>吳家餡餅</title>
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
-    <script type="text/javascript" src="<%= request.getContextPath() %>/javaScript/script.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath() %>/javaScript/scriptorderPage.js"></script>
 </head>
 <body>
 

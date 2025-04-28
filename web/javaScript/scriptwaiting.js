@@ -6,7 +6,7 @@ window.onload = function () {
     const orderInfo = document.getElementById("orderInfo");
 
     if (!orderId || !orderItems || !total) {
-        orderInfo.innerHTML = "找不到訂單資料，請重新點餐";
+        orderInfo.innerHTML = "<p style='color: red;'>找不到訂單資料，請重新點餐！</p>";
     } else {
         let html = `<p>訂單編號：<strong>${orderId}</strong></p>`;
         html += "<ul>";
@@ -20,16 +20,21 @@ window.onload = function () {
 
 
 // 輪詢付款狀態
-    setInterval(() => {
-        fetch("checkPaymentStatus?orderId=" + orderId)
+    const intervalId = setInterval(() => {
+        fetch("checkPaymentStatus?orderId=" + encodeURIComponent(orderId))
             .then(res => res.json())
             .then(data => {
                 if (data.paid === true) {
-                    window.location.href = "successPage.jsp?orderId="+orderId;
+                    clearInterval(intervalId);
+                    window.location.href = "successPage.jsp";
                 } else if (data.cancelled === true) {
+                    clearInterval(intervalId);
                     window.location.href="cancelPage.jsp"
                 }
-            });
+            })
+            .catch(err =>{
+                console.error("輪詢失敗",err);
+            })
     }, 3000);
 
 };

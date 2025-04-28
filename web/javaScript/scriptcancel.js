@@ -1,3 +1,5 @@
-setTimeout(() => {
-    window.location.href = 'orderPage.jsp';
-}, 8000);
+window.onload = function () {
+    setTimeout(() => {
+        window.location.href = 'orderPage.jsp';
+    }, 8000);
+}
